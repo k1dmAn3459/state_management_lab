@@ -1,53 +1,29 @@
 import 'package:flutter/material.dart';
-import '../models/history_entry.dart';
+import '../state/counter_scope.dart';
 import '../widgets/history_badge.dart';
 
-class HistoryScreen extends StatefulWidget {
-  final List<HistoryEntry> history;
-  final VoidCallback onClearHistory;
-
-  const HistoryScreen({
-    super.key,
-    required this.history,
-    required this.onClearHistory,
-  });
-
-  @override
-  State<HistoryScreen> createState() => _HistoryScreenState();
-}
-
-class _HistoryScreenState extends State<HistoryScreen> {
-  late List<HistoryEntry> _localHistory;
-
-  @override
-  void initState() {
-    super.initState();
-    _localHistory = widget.history;
-  }
-
-  void _clear() {
-    widget.onClearHistory();
-    setState(() {
-      _localHistory = const [];
-    });
-  }
+class HistoryScreen extends StatelessWidget {
+  const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     debugPrint('build: HistoryScreen');
+    final notifier = CounterScope.of(context);
+    final history = notifier.history;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Історія змін'),
-        actions: [
-          HistoryBadge(count: _localHistory.length),
+        actions: const [
+          HistoryBadge(),
         ],
       ),
-      body: _localHistory.isEmpty
+      body: history.isEmpty
           ? const Center(child: Text('Історія порожня'))
           : ListView.builder(
-              itemCount: _localHistory.length,
+              itemCount: history.length,
               itemBuilder: (context, index) {
-                final item = _localHistory[index];
+                final item = history[index];
                 return ListTile(
                   leading: CircleAvatar(child: Text(item.action)),
                   title: Text(
@@ -61,7 +37,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: FilledButton.tonalIcon(
-            onPressed: _localHistory.isEmpty ? null : _clear,
+            onPressed: history.isEmpty ? null : notifier.clearHistory,
             icon: const Icon(Icons.delete_outline),
             label: const Text('Очистити історію'),
           ),

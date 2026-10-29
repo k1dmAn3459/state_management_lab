@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import '../state/counter_scope.dart';
 
 class CounterDisplay extends StatelessWidget {
-  final int value;
-
-  const CounterDisplay({super.key, required this.value});
+  const CounterDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
     debugPrint('build: CounterDisplay');
+    final value = CounterScope.of(context).value;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
