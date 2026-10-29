@@ -1,17 +1,10 @@
-# state_management_lab
+Практична робота 6.1: Базовий State Management у Flutter
 
-A new Flutter project.
+ Лічильник з історією
 
-## Getting Started
+Інструкція запуску
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Клонувати репозиторій:
+   ```bash
+   git clone <URL_репозиторію>
+   cd state_management_lab
