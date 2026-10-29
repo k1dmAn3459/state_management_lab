@@ -6,5 +6,5 @@
 
 1. Клонувати репозиторій:
    ```bash
-   git clone <URL_репозиторію>
+   git clone <(https://github.com/k1dmAn3459/state_management_lab.git)>
    cd state_management_lab
